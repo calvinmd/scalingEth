@@ -50,4 +50,4 @@ MATIC has a few crucial features that enables Parimutuel on-chain:
 - Parimutuel: [0xc4faB13CC051C334607d8DB61c58a017aDb13e30](https://explorer-mumbai.maticvigil.com/address/0xc4faB13CC051C334607d8DB61c58a017aDb13e30/transactions)
 - Dummy token: [0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048](https://explorer-mumbai.maticvigil.com/address/0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048/transactions)
 
-The source codes are in this repo. If you need test tokens or approval for your testnet address, please feel free to [PM me on twitter](https://twitter.com/ICscript)
+The source codes are in this repo. If you need test tokens or approval for your testnet address, please feel free to [PM me on twitter](https://twitter.com/ICscript), or feel free to relaunch with your own tweaks on Mumbai testnet! (Here's the instruction on how to launch the smart contracts using Remix: https://docs.matic.network/docs/develop/remix)
