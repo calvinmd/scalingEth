@@ -45,3 +45,9 @@ MATIC has a few crucial features that enables Parimutuel on-chain:
 ## What is next?
 - the Parimutuel smart contract is truly versatile and configurable for a lot of different types of prediction markets. It is way simpler compared to other prediction market implementations such as Augur or Polymarket, with a single smart contract. The simplicity allows any operator to launch it with confidence without relying on an engineering team
 - I hope to implement some of the interesting Parimutuel games such as [Moon-Rekt](https://live.hxro.io/), sports betting in general, and integrate real data feed and configuration and UI for the next steps.
+
+## Mumbai test net contracts
+Parimutuel: [0xc4faB13CC051C334607d8DB61c58a017aDb13e30](https://explorer-mumbai.maticvigil.com/address/0xc4faB13CC051C334607d8DB61c58a017aDb13e30/transactions)
+Dummy token: [0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048](https://explorer-mumbai.maticvigil.com/address/0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048/transactions)
+
+The source codes are in this repo. If you need test tokens or approval for your testnet address, please feel free to [PM me on twitter](https://twitter.com/ICscript)
