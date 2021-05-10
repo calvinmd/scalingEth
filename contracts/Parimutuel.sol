@@ -264,6 +264,7 @@ contract Parimutuel is Context {
     /// @notice unique contract id, auto-increment
     uint256 public currentPoolId = 1;
     uint256 public maxBuckets = 2;
+    uint256 public feePercent = 10;
     /// @notice MATIC ERC20 token address
     address public currency = 0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048;
     ERC20 token = ERC20(currency);
@@ -292,13 +293,29 @@ contract Parimutuel is Context {
     mapping (uint256 => bool) public live;
     /// @notice Is pool settled? poolId => boolean
     mapping (uint256 => bool) public settled;
+    /// @notice Pool metadata 1
+    mapping (uint256 => string) public metadata1;
+    /// @notice Pool metadata 2
+    mapping (uint256 => string) public metadata2;
+    /// @notice Pool metadata 3
+    mapping (uint256 => string) public metadata3;
+    /// @notice Pool metadata 4
+    mapping (uint256 => string) public metadata4;
 
     /// @notice event for entry logged
-    event Received(uint256 poolId, address sender, uint256 bucketId, uint256 amount);
+    event EntryCreated(uint256 poolId, address sender, uint256 bucketId, uint256 amount);
     /// @notice poolId with winning bucketId with the total poolSize
     event Settled(uint256 poolId, uint256 bucketId, uint256 poolSize);
-    /// @dev DEBUG event
-    event DEBUG(string message);
+    /// @dev Metadata set
+    event MetadataSet(string handle, string data);
+    /// @dev Fee updated
+    event FeePercentUpdated(uint256 feePercent);
+    /// @dev Pool lolockPool
+    event PoolLocked(uint256 poolId);
+    /// @dev Pool created
+    event PoolCreated(uint256 poolId);
+    /// @dev DEBUG
+    event DEBUG(string message, uint256 amount);
 
     modifier isAdmin() {
         require(
@@ -313,25 +330,68 @@ contract Parimutuel is Context {
         admin = _msgSender();
         /// @dev auto initiate first pool
         live[currentPoolId] = true;
+        emit PoolCreated(currentPoolId);
     }
+
+    fallback() external payable {}
 
     function createPool() isAdmin public {
         currentPoolId = SafeMath.add(currentPoolId, 1);
         live[currentPoolId] = true;
+        emit PoolCreated(currentPoolId);
+    }
+
+    function lockPool(uint256 _poolId) isAdmin public {
+        live[_poolId] = false;
+        emit PoolLocked(_poolId);
+    }
+
+    function setFeePercent(uint256 _feePercent) isAdmin public {
+        feePercent = _feePercent;
+        emit FeePercentUpdated(_feePercent);
+    }
+
+    /// @dev setting metadata.
+    function setMetadata1(uint256 _poolId, string calldata _metadata) isAdmin public {
+        metadata1[_poolId] = _metadata;
+        emit MetadataSet("metadata1", _metadata);
+    }
+    function setMetadata2(uint256 _poolId, string calldata _metadata) isAdmin public {
+        metadata2[_poolId] = _metadata;
+        emit MetadataSet("metadata2", _metadata);
+    }
+    function setMetadata3(uint256 _poolId, string calldata _metadata) isAdmin public {
+        metadata3[_poolId] = _metadata;
+        emit MetadataSet("metadata3", _metadata);
+    }
+    function setMetadata4(uint256 _poolId, string calldata _metadata) isAdmin public {
+        metadata4[_poolId] = _metadata;
+        emit MetadataSet("metadata4", _metadata);
     }
 
     function settlePool(uint256 _poolId, uint256 _winningBucketId) isAdmin public {
         require(_winningBucketId < maxBuckets && _winningBucketId >= 0, "Invalid bucketId");
         /// @dev Pool winner distribution
         for (uint256 i=0; i < bucketAddresses[_poolId][_winningBucketId].length; i++) {
-            token.transferFrom(
-                address(this),
+            token.transfer(
                 bucketAddresses[_poolId][_winningBucketId][i],
-                SafeMath.div(bucketSizePerAddress[_poolId][_winningBucketId][bucketAddresses[_poolId][_winningBucketId][i]], poolSize[_poolId])
+                SafeMath.div(
+                    SafeMath.mul(
+                        bucketSizePerAddress[_poolId][_winningBucketId][bucketAddresses[_poolId][_winningBucketId][i]],
+                        SafeMath.mul(
+                            poolSize[_poolId],
+                            SafeMath.sub(100, feePercent)
+                        )
+                    ),
+                    SafeMath.mul(
+                        bucketSize[_poolId][_winningBucketId],
+                        100
+                    )
+                )
             );
         }
-        /// @dev Disable pool
-        live[_poolId] = false;
+        /// @dev Lock pool
+        lockPool(_poolId);
         /// @dev Delete all bucket addresses
         for (uint256 j=0; j < maxBuckets; j++) {
             delete bucketAddresses[_poolId][j];
@@ -342,7 +402,6 @@ contract Parimutuel is Context {
     function enter(uint256 _poolId, uint256 _bucketId, uint256 _amount) public {
         require(live[_poolId] == true && settled[_poolId] == false, "Invalid pool id");
         require(_bucketId < maxBuckets && _bucketId >= 0, "Invalid bucketId");
-        emit DEBUG("pool is valid");
         require(token.balanceOf(_msgSender()) >= _amount, "Insufficient balance");
         /// @dev user needs to approve the contract address explicitly
         require(token.transferFrom(_msgSender(), address(this), _amount), "Payment transfer failed");
@@ -358,6 +417,6 @@ contract Parimutuel is Context {
         bucketSizePerAddress[_poolId][_bucketId][_msgSender()] = SafeMath.add(bucketSizePerAddress[_poolId][_bucketId][_msgSender()], _amount);
         /// @dev log poolSize
         poolSize[_poolId] = SafeMath.add(poolSize[_poolId], _amount);
-        emit Received(_poolId, _msgSender(), _bucketId, _amount);
+        emit EntryCreated(_poolId, _msgSender(), _bucketId, _amount);
     }
 }
