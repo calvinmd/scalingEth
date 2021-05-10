@@ -47,7 +47,7 @@ MATIC has a few crucial features that enables Parimutuel on-chain:
 - I hope to implement some of the interesting Parimutuel games such as [Moon-Rekt](https://live.hxro.io/), sports betting in general, and integrate real data feed and configuration and UI for the next steps.
 
 ## Mumbai testnet contracts
-Parimutuel: [0xc4faB13CC051C334607d8DB61c58a017aDb13e30](https://explorer-mumbai.maticvigil.com/address/0xc4faB13CC051C334607d8DB61c58a017aDb13e30/transactions)
-Dummy token: [0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048](https://explorer-mumbai.maticvigil.com/address/0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048/transactions)
+- Parimutuel: [0xc4faB13CC051C334607d8DB61c58a017aDb13e30](https://explorer-mumbai.maticvigil.com/address/0xc4faB13CC051C334607d8DB61c58a017aDb13e30/transactions)
+- Dummy token: [0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048](https://explorer-mumbai.maticvigil.com/address/0x94082fe34E939EDd3FDE466Ea4a58cD5bFCF3048/transactions)
 
 The source codes are in this repo. If you need test tokens or approval for your testnet address, please feel free to [PM me on twitter](https://twitter.com/ICscript)
