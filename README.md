@@ -42,7 +42,7 @@ MATIC has a few crucial features that enables Parimutuel on-chain:
 ## What was not implemented?
 - I have done a partial widget-style UI but did not have time to finish within the hackathon time limit. The missing parts include a real data feed or oracle integration that brings in the outcome, and the approval interface for custom tokens. The wallet was connected and the methods of the Parimutuel smart contract can also be invoked but there is no meaningful presentation without some kind of real world data
 
-## What is next?
+## What's next?
 - the Parimutuel smart contract is truly versatile and configurable for a lot of different types of prediction markets. It is way simpler compared to other prediction market implementations such as Augur or Polymarket, using only one single smart contract (**only 161 lines of code** with the standard contract and interfaces removed). The simplicity allows any operator to launch it with confidence without relying on an engineering team
 - I hope to implement some of the interesting Parimutuel games such as [Moon-Rekt](https://live.hxro.io/), sports betting in general, and integrate real data feed and configuration and UI for the next steps.
 
