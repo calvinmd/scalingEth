@@ -30,7 +30,7 @@ Operator functions include
 
 ## Why did I choose MATIC?
 MATIC has a few crucial features that enables Parimutuel on-chain:
-1. MATIC is EVM- and Solidity-compatible, so we use the same smart contract on Ethereum for implementation
+1. MATIC is EVM- and Solidity-compatible, so I can use the same smart contract on Ethereum for implementation
 2. MATIC has a fast and reliable asset bridge (I selected the PoS bridge) to enable playing with Ethereum assets
 3. MATIC's fee is low and block time is fast
 
