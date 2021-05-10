@@ -40,7 +40,7 @@ MATIC has a few crucial features that enables Parimutuel on-chain:
 - I used a standard ERC20 token implementation from [the APIS project](http://docs.theapis.io/) for easy `approve()` access, but should be able to use the transferred asset from the MATIC bridge, too
 
 ## What was not implemented?
-- I have done a partial widget-style widget UI but did not have time to finish within the hackathon time limit. The missing parts include a real data feed or oracle integration that bring in the outcome, and the approval interface for custom tokens. The wallet was connected and the methods of the Parimutuel smart contract can also be invoked but there is no meaningful presentation without some kind of real world data
+- I have done a partial widget-style UI but did not have time to finish within the hackathon time limit. The missing parts include a real data feed or oracle integration that bring in the outcome, and the approval interface for custom tokens. The wallet was connected and the methods of the Parimutuel smart contract can also be invoked but there is no meaningful presentation without some kind of real world data
 
 ## What is next?
 - the Parimutuel smart contract is truly versatile and configurable for a lot of different types of prediction markets. It is way simpler compared to other prediction market implementations such as Augur or Polymarket, with a single smart contract. The simplicity allows any operator to launch it with confidence without relying on an engineering team
