@@ -3,7 +3,7 @@
 ## Introduction
 Parimutuel is a system where all bets for different outcomes of an event put into a single pool, and the winning bettors split the pool pro-rata after deducting the fees paid to the "house" (operator).
 
-Common games include sports betting, politics, horse racing, and other forms of prediction markets.
+Common games include sports betting, politics, horse racing, and most forms of prediction markets can be implemented using Parimutuel.
 
 ## On-chain solution
 I've created the on-chain smart contract to enable parimutuel game plays, with the following configurations
