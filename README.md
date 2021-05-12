@@ -8,31 +8,31 @@ Common games include sports betting, politics, horse racing, and most forms of p
 ## On-chain solution
 I've created the on-chain smart contract to enable parimutuel game plays, with the following configurations
 - house/operator: the wallet that launches the smart contract
-- initial pool is created, with a preset of 2 maximum outcomes (called "buckets", can be overwritten by operator)
+- initial pool is created, with a preset of 2 maximum outcomes (called "buckets", can be overwritten by the operator)
 - a percentage fee (default at 10%)
 - the ERC20 currency accepted as wagers is hardcoded, can be replaced by other standard ERC20 tokens
 
 Users can interact with only one method
-- `enter` allows user to specify which pool and which outcome (called bucket) and at what amount to enter
+- `enter` allows a user to specify which pool and which outcome (called bucket) and at what amount to enter
 - user needs to first approve the smart contract on the selected token in order to call the `enter` method
 
 Operator functions include
-- re-configurating some of the params
+- re-configuring some of the params
 - create a new pool
 - lock the pool
 - set up to 4 metadata on each pool
 - most importantly, settle the pool with the winning outcome and trigger the payout and fee deduction
 
-## Why do we need scaling solution?
+## Why do we need a scaling solution?
 - more transparency and fairness when executed on-chain
 - while parimutuel can support high rollers, most gamers are playing it for fun with small bets, the high gas fee on Ethereum would prohibit the game from launching on-chain
 - the time it takes to finalize blocks would render it impossible for short timeframe games or last second entries
 
 ## Why did I choose MATIC?
-MATIC has a few crucial features that enables Parimutuel on-chain:
+MATIC has a few crucial features that enable Parimutuel on-chain:
 1. MATIC is EVM- and Solidity-compatible, so I can use the same smart contract on Ethereum for implementation
 2. MATIC has a fast and reliable asset bridge (I selected the PoS bridge) to enable playing with Ethereum assets
-3. MATIC's fee is low and block time is fast
+3. MATIC's fee is low and block-time is fast
 
 ## How was it implemented?
 - the asset bridge I simply used the MATIC tutorial which provided an asset bridge using PoS: https://github.com/maticnetwork/pos-plasma-tutorial
