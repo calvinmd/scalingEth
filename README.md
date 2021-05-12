@@ -1,5 +1,7 @@
 # Scaling Ethereum Hackathon: Parimutuel on MATIC
 
+Official submission link: https://hack.ethglobal.co/showcase/parimutuel-on-matic-rec75E2PcgFa6dB1f
+
 ## Introduction
 Parimutuel is a system where all bets for different outcomes of an event put into a single pool, and the winning bettors split the pool pro-rata after deducting the fees paid to the "house" (operator).
 
